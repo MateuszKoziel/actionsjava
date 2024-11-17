@@ -1,18 +1,9 @@
 pipeline {
-    agent { docker {
-            image 'maven:3.8.8-eclipse-temurin-21'
-        } }
+    agent { docker 'maven:3.9.5-eclipse-temurin-21' }
     stages {
-        stage('Example Build') {
+        stage('Json Placeholder tests') {
             steps {
-                echo 'Building the Java project'
-                sh 'mvn clean package'
-            }
-        }
-        stage('Example Test') {
-            steps {
-                echo 'Running tests'
-                sh 'mvn test'
+                sh 'mvn -B clean test -Dtest=JsonPlaceholderTest'
             }
         }
     }
